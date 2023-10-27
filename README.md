@@ -37,7 +37,7 @@ Open up a command prompt by typing cmd in the address bar/folder path (whatever 
 #### Repository files
 Either use the git command or download the zip from the clearly green button at the top of this github page with the word 'code' written on it. On there will be the downlaod zip option. download that, extract it using whatever and now you're almost ready to go.
 ### Configuration
-Once you got the repository files downloaded, you don't need the imgs folder so you can delete it and in the videos folder there is alread ya folder there labelled 1, you dont need that either so you can delete it if you want.
+Once you got the repository files downloaded, in the videos folder there is already a folder there labelled 1, you dont need that so you can delete it if you want.
 
 Now you should be left with:
 - an empty folder named 'videos' (do not delete this)
