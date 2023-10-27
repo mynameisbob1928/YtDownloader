@@ -25,7 +25,7 @@ let k = num;
 let randomvarlol;
 const timmmy = Date.now()
 //Your user id is used to mention you in the logging
-const userid = '640579687822917649'
+const userid = require('./yos.json').userid
 
 //The exit function provides a way to log to your discord server when the script exits, occasionally this may not work if an error is not properly caught.
 async function exit(exitcode) {
@@ -240,7 +240,7 @@ let chan;
 client.on('ready', async () => {
     console.log('on')
     //replace the channel id here if you are not using it for the dantdm download project
-    chan = await client.channels.fetch('1163569030184063007');
+    chan = await client.channels.fetch(require('./yos.json').channelid);
     //random timeout idk
     await setTimeout(() => {}, 1000);
     mainembed = new EmbedBuilder()
