@@ -45,6 +45,7 @@ async function exit(exitcode) {
     //embed to be send if there is an error
     const errembed = new EmbedBuilder()
         .setTitle(`The script exited with an error`)
+        .setColor('Random')
         .addFields({name: 'Stats', value: `Downloaded ${num-k} video/s. \nTotal downloaded videos: ${num-1}\nTime online: ${yo}`})
     if(exitcode===1) {
         //For if there is a file/folder that already exists
@@ -59,6 +60,7 @@ async function exit(exitcode) {
     } else if(!exitcode||exitcode===0) {
         //For when the script exits without erroring
         const laembed = new EmbedBuilder()
+        .setColor('Random')
         .setTitle('The script has finished downloading videos')
         .setDescription(`<@${userid}>`)
         .addFields({name: 'Stats', value: `Downloaded ${num-k} video/s. \nTotal downloaded videos: ${num-1}\nTime online: ${yo}`})
@@ -67,6 +69,7 @@ async function exit(exitcode) {
         const laembed = new EmbedBuilder()
         .setTitle('User initiated exit')
         .setDescription(`<@${userid}>`)
+        .setColor('Random')
         .addFields({name: 'Stats', value: `Downloaded ${num-k} video/s. \nTotal downloaded videos: ${num-1}\nTime online: ${yo}`})
         await chan.send({embeds: [laembed]})
     }
@@ -245,6 +248,7 @@ client.on('ready', async () => {
     await setTimeout(() => {}, 1000);
     mainembed = new EmbedBuilder()
         .setTitle('Download session started')
+        .setColor('Random')
         .setDescription(`<@${userid}>\n\nAt the moment there are ${num-1} detected videos downloaded.\nThe amount of videos in list to download is currently ${await links()}`)
     await chan.send({embeds: [mainembed]})
 })
@@ -272,6 +276,7 @@ async function donedownload(num, time) {
         const emb = new EmbedBuilder()
         .setTitle('Video downloaded')
         .setDescription(`<@${userid}>`)
+        .setColor('Random')
         .addFields({name: 'Time taken', value: `${yo}`})
         .addFields({name: 'Video', value: `Title: ${title},\nURL: ${webpage_url}\nChannel: ${channel} (${uploader_id})`})
         .addFields({name: 'Description', value: `${description}`})
