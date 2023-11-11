@@ -105,3 +105,4 @@ console.log(all)
 ```
 Once you have done that you can right click the large string that shows up and click 'Copy object`
 
+(not finished making md lol)
