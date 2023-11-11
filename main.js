@@ -45,8 +45,7 @@ async function exit(exitcode) {
     //embed to be send if there is an error
     const errembed = new EmbedBuilder()
         .setTitle(`The script exited with an error`)
-        .setColor('Random')
-        .addFields({name: 'Stats', value: `Downloaded ${num-k} video/s. \nTotal downloaded videos: ${num-1}\nTime online: ${yo}`})
+        .addFields({name: 'Stats', value: `Downloaded ${num-k} video/s. \nTotal downloaded videos: ${num-1}\nTime online: ${yo}\nVideos left in file: ${await links()}`})
     if(exitcode===1) {
         //For if there is a file/folder that already exists
         console.error(randomvarlol)
@@ -63,15 +62,16 @@ async function exit(exitcode) {
         .setColor('Random')
         .setTitle('The script has finished downloading videos')
         .setDescription(`<@${userid}>`)
-        .addFields({name: 'Stats', value: `Downloaded ${num-k} video/s. \nTotal downloaded videos: ${num-1}\nTime online: ${yo}`})
+        .addFields({name: 'Stats', value: `Downloaded ${num-k} video/s. \nTotal downloaded videos: ${num-1}\nTime online: ${yo}\nVideos left in file: ${await links()}`})
         await chan.send({embeds: [laembed]})
     } else if(exitcode===3) {
         const laembed = new EmbedBuilder()
         .setTitle('User initiated exit')
         .setDescription(`<@${userid}>`)
-        .setColor('Random')
-        .addFields({name: 'Stats', value: `Downloaded ${num-k} video/s. \nTotal downloaded videos: ${num-1}\nTime online: ${yo}`})
+        .addFields({name: 'Stats', value: `Downloaded ${num-k} video/s. \nTotal downloaded videos: ${num-1}\nTime online: ${yo}\nVideos left in file: ${await links()}`})
         await chan.send({embeds: [laembed]})
+    } else if(exitcode===4) {
+        console.log('There was a connection error. Please view the full error abov efor more information');
     }
     //just to make sure that is actually exits ;)
     process.exit();
@@ -169,8 +169,8 @@ async function nextlink(){const e = fs.readFileSync('./links.txt', 'utf8').split
 
 //the (async () thing is to allow javascript code to run asynchronously
 (async () => {
-    await client.login(token).catch(err => {console.log(`There was an error logging into the bot, this may be due to you having an incorrect token.\nFull error:\n${err}`)})
-    //checks for empty folders which will mess up the amount of videos downloaded count
+    await client.login(token).catch(async err => {console.log(`There was an error logging into the bot, this may be due to you having an incorrect token.\nFull error:\n${err}`); await exit(4);})
+    //checks for empty folders which will mess up the amount of videos downloaded count and some other things
     let no;
     if(num!=1) { no = 0; } else { no = 1; }
     while (no===0){
