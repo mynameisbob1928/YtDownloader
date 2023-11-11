@@ -45,7 +45,9 @@ Now you should be left with:
 - main.js
 - package.json
 - yos.json
+- 
 (The .json, .js and .txt may not show if is not enabled in your pc settings)
+
 In yos.json, you need to fill in 3 options. First one is the bot token (go watch youtube vid on hwo to get it if you're not sure). Second is your user id (again find a yt video), and finally the channel id where the logs are going to be sent (I'm not even gonna say it).
 ### Running the script
 One more thing, in the links.txt file you should place all your video links you want to download. Make sure they are all seperated by **only a space**. Anything else will break it, I think.
