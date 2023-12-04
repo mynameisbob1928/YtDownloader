@@ -169,6 +169,7 @@ async function nextlink(){const e = fs.readFileSync('./links.txt', 'utf8').split
 
 //the (async () thing is to allow javascript code to run asynchronously
 (async () => {
+    if(await links()===0) return console.log('\nYou have no videos to download :p')
     await client.login(token).catch(async err => {console.log(`There was an error logging into the bot, this may be due to you having an incorrect token.\nFull error:\n${err}`); await exit(4);})
     //checks for empty folders which will mess up the amount of videos downloaded count and some other things
     let no;
