@@ -54,6 +54,8 @@ One more thing, in the links.txt file you should place all your video links you 
 
 Now that you got everthing ready you can open command prompt again and simply type 'node .' and it will begin to download your videos.
 
+Also when exiting the script, if you press ctrl + c (in console world this is not copy) it will exit the script and also send a finish log to your server. If when you do this it shows a bunch of errors, don't worry about that it doesn't always exit perfectly.
+
 ### Other stuff
 I'm just going to add some images of what the discord logs look like.
 
@@ -105,4 +107,4 @@ console.log(all)
 ```
 Once you have done that you can right click the large string that shows up and click 'Copy object`
 
-(not finished making md lol)
+(not finished making md lol, lmk if you want the rest of it cuz idk if imma finish this anytime soon)
