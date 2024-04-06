@@ -23,6 +23,7 @@ const command = 'yt-dlp --write-description --write-info-json --write-playlist-m
 let num = fs.readdirSync('./videos').length + 1;
 let k = num;
 let randomvarlol;
+let log = {};
 const timmmy = Date.now();
 // Your user id is used to mention you in the logging
 const userid = require('./yos.json').userid;
@@ -127,7 +128,8 @@ async function colourise(text) {
 }
 
 // the cmd function is called anytime that a command needs to be exectued in the command prompt.
-async function cmd(cmd, dir) {
+async function cmd(cmd, dir, ehehehehehehhehehehehehehehehehe) {
+	if (ehehehehehehhehehehehehehehehehe) log[ehehehehehehhehehehehehehehehehe] = [];
 	// directory selection
 	const cwd = dir || process.cwd();
 
@@ -142,6 +144,7 @@ async function cmd(cmd, dir) {
 
 	// anything that would show something in the terminal is caught and shown here
 	childProcess.stdout.on('data', async (data) => {
+		if (ehehehehehehhehehehehehehehehehe) log[ehehehehehehhehehehehehehehehehe].push(data.toString());
 		// the reply thread is useless and spams even more
 		if (data.toString().startsWith('[youtube]     Downloading comment API JSON reply thread')) return;
 		if (data.toString().startsWith('[youtube]        Downloading comment replies API JSON page')) return;
@@ -162,6 +165,7 @@ async function cmd(cmd, dir) {
 
 	// this will hopefully catch and handle most errors that would end up happening within the script
 	childProcess.stderr.on('data', (data) => {
+		if (ehehehehehehhehehehehehehehehehe) log[ehehehehehehhehehehehehehehehehe].push(data.toString());
 		randomvarlol = data;
 		if (data.toString().startsWith('A subdirectory or file ')) {
 			process.stdout.write(`\n${data}`);
@@ -225,15 +229,25 @@ async function rep() {
 async function repspace() {
 	const text = fs.readFileSync('./links.txt', 'utf8').split(' ');
 	let no = 0;
-	let hmmmmmmm = 0;
 	while (no === 0) {
-		if (text[hmmmmmmm] === '') { text.shift(); }
+		if (text[0] === '') { text.shift(); }
 		else { no = 1; }
 	}
 	fs.writeFileSync('./links.txt', text.join(' '));
 }
 // just gets the next link
 async function nextlink() { const e = fs.readFileSync('./links.txt', 'utf8').split(' '); if (e[0] === '') e.shift(); return e[0]; }
+
+async function writelog(lognum) {
+	const files = fs.readdirSync(`./videos/${lognum}`);
+	if (files.includes('log.txt')) {
+		fs.appendFileSync(`./videos/${lognum}/log.txt`, `\n\nThis file was created and potentially written to before this log was appended to this file\n${log[lognum].join('')}`);
+	}
+	else {
+		fs.writeFileSync(`./videos/${lognum}/log.txt`, `${log[lognum].join('')}`);
+	}
+	delete log[lognum];
+}
 
 // the (async () thing is to allow javascript code to run asynchronously
 (async () => {
@@ -282,9 +296,9 @@ async function nextlink() { const e = fs.readFileSync('./links.txt', 'utf8').spl
 					process.stdout.write(green(`\ndir ${num.toString()} created`));
 
 					const time = Date.now();
-					await cmd(command + next, `./videos/${num.toString()}`);
+					await cmd(command + next, `./videos/${num.toString()}`, `${num}`);
 					process.stdout.write(green('\nDownloaded video'));
-
+					writelog(`${num}`);
 					await donedownload(num, time);
 					num++;
 
